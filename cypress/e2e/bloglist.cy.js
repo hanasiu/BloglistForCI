@@ -9,12 +9,11 @@ describe('login test', () => {
     })
 })
 
-
-describe('app health check', function() {
-  it('app health check. if fail, no deploy', function() {
-    cy.visit('http://localhost:3003/health')
-    cy.contains('ok')
-  })
+describe('app health check', function () {
+    it('app health check. if fail, no deploy', function () {
+        cy.visit('http://localhost:3003/health')
+        cy.contains('ok')
+    })
 })
 
 // describe('template spec', () => {
