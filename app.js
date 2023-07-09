@@ -46,7 +46,7 @@ app.use(middleware.errorHandler)
 
 //for deploy test
 app.get('/version', (req, res) => {
-    res.send('test 4') // change this string to ensure a new version deployed
+    res.send('test 5') // change this string to ensure a new version deployed
 })
 
 app.get('/health', (req, res) => {
