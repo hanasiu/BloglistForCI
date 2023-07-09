@@ -1,4 +1,4 @@
-describe('template spec', () => {
+describe('login test', () => {
     it('passes', () => {
         cy.visit('http://localhost:3003')
         cy.contains('login').click()
@@ -7,6 +7,14 @@ describe('template spec', () => {
         cy.get('#login-button').click()
         cy.contains('testid logged in')
     })
+})
+
+
+describe('app health check', function() {
+  it('app health check. if fail, no deploy', function() {
+    cy.visit('http://localhost:3003/health')
+    cy.contains('ok')
+  })
 })
 
 // describe('template spec', () => {

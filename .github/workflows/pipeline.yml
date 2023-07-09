@@ -27,7 +27,7 @@ jobs:
         uses: cypress-io/github-action@v5
         with:
           command: npm run test:e2e
-          start: npm run dev
+          start: npm start
           wait-on: http://localhost:3003
       - name: Trigger deployment
         if: ${{ github.event_name == 'push' }}
