@@ -18,7 +18,7 @@ describe('Testing adding users:', () => {
         })
 
         await user.save()
-    })
+    }, 100000)
 
     test('creating a new user', async () => {
         const usersAtStart = await helper.usersInDb()

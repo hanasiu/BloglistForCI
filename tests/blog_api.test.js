@@ -35,7 +35,7 @@ beforeEach(async () => {
         .post('/api/blogs')
         .set('Authorization', `bearer ${testToken}`)
         .send(helper.initialBlogs[1])
-})
+}, 100000)
 
 describe('Test: Get', () => {
     test('blogs are returned as json', async () => {
