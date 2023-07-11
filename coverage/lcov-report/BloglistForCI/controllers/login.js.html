@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">22.22% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>36/36</span>
+                <span class='fraction'>8/36</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>6/6</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">22.22% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>36/36</span>
+                <span class='fraction'>8/36</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -105,34 +105,34 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const jwt = require('jsonwebtoken')
@@ -141,34 +141,34 @@ const loginRouter = require('express').Router()
 const User = require('../models/user')
 &nbsp;
 loginRouter.post('/', async (request, response) =&gt; {
-    const { username, password } = request.body
-&nbsp;
-    const user = await User.findOne({ username })
-    const passwordCorrect =
-        user === null
-            ? false
-            : await bcrypt.compare(password, user.passwordHash)
-&nbsp;
-    if (!(user &amp;&amp; passwordCorrect)) {
-        return response.status(401).json({
-            error: 'invalid username or password',
-        })
-    }
-&nbsp;
-    const userForToken = {
-        username: user.username,
-        id: user._id,
-    }
-&nbsp;
-    // token expires in 60*60 seconds, that is, in one hour
-    const token = jwt.sign(userForToken, process.env.SECRET, {
-        expiresIn: 60 * 60,
-    })
-&nbsp;
-    response
-        .status(200)
-        .send({ token, username: user.username, name: user.name })
-})
+<span class="cstat-no" title="statement not covered" >    const { username, password } = request.body</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    const user = await User.findOne({ username })</span>
+<span class="cstat-no" title="statement not covered" >    const passwordCorrect =</span>
+<span class="cstat-no" title="statement not covered" >        user === null</span>
+<span class="cstat-no" title="statement not covered" >            ? false</span>
+<span class="cstat-no" title="statement not covered" >            : await bcrypt.compare(password, user.passwordHash)</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    if (!(user &amp;&amp; passwordCorrect)) {</span>
+<span class="cstat-no" title="statement not covered" >        return response.status(401).json({</span>
+<span class="cstat-no" title="statement not covered" >            error: 'invalid username or password',</span>
+<span class="cstat-no" title="statement not covered" >        })</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    const userForToken = {</span>
+<span class="cstat-no" title="statement not covered" >        username: user.username,</span>
+<span class="cstat-no" title="statement not covered" >        id: user._id,</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    // token expires in 60*60 seconds, that is, in one hour</span>
+<span class="cstat-no" title="statement not covered" >    const token = jwt.sign(userForToken, process.env.SECRET, {</span>
+<span class="cstat-no" title="statement not covered" >        expiresIn: 60 * 60,</span>
+<span class="cstat-no" title="statement not covered" >    })</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    response</span>
+<span class="cstat-no" title="statement not covered" >        .status(200)</span>
+<span class="cstat-no" title="statement not covered" >        .send({ token, username: user.username, name: user.name })</span>
+<span class="cstat-no" title="statement not covered" >})</span>
 &nbsp;
 module.exports = loginRouter
 &nbsp;</pre></td></tr></table></pre>
@@ -178,7 +178,7 @@ module.exports = loginRouter
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-07-09T08:43:58.447Z
+                at 2023-07-11T04:32:07.477Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
