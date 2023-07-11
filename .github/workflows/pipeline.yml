@@ -17,7 +17,12 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: '20'
-      - uses: supercharge/mongodb-github-action@1.9.0
+      - name: Start MongoDB
+        uses: supercharge/mongodb-github-action@1.8.0
+        with:
+          mongodb-username: ${{ secrets.MONGODB_USERNAME }}
+          mongodb-password: ${{ secrets.MONGODB_PASSWORD }}
+          mongodb-db: testblogApp2
       - name: Install dependencies
         run: npm install
       - name: Check style by prettier
