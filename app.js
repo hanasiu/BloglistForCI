@@ -30,7 +30,7 @@ app.use(middleware.requestLogger)
 
 //for deploy test
 app.get('/version', (req, res) => {
-    res.send('test 7') // change this string to ensure a new version deployed
+    res.send('test 8') // change this string to ensure a new version deployed
 })
 
 app.get('/health', (req, res) => {
