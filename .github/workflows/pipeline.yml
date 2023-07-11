@@ -12,11 +12,21 @@ on:
 jobs:
   simple_deployment_pipeline:
     runs-on: ubuntu-latest
+    env:
+      MONGODB_URI: ${{ secrets.MONGODB_URI }}
+      TEST_MONGODB_URI: ${{ secrets.TEST_MONGODB_URI }}
+      SECRET: ${{ secrets.SECRET }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: '20'
+      - name: Start MongoDB
+        uses: supercharge/mongodb-github-action@1.8.0
+        with:
+            mongodb-username: ${{ secrets.MONGODB_USERNAME }}
+            mongodb-password: ${{ secrets.MONGODB_PASSWORD }}
+            mongodb-db: blogApp
       - name: Install dependencies
         run: npm install
       - name: Check style by prettier
@@ -27,7 +37,7 @@ jobs:
         uses: cypress-io/github-action@v5
         with:
           command: npm run test:e2e
-          start: npm start
+          start: npm run dev
           wait-on: http://localhost:3003
       - name: Trigger deployment
         if: ${{ github.event_name == 'push' }}
