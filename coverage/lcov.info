@@ -643,8 +643,9 @@ DA:12,1
 DA:13,1
 LF:13
 LH:12
-BRDA:8,0,0,0
-BRF:1
+BRDA:3,0,0,0
+BRDA:8,1,0,0
+BRF:2
 BRH:0
 end_of_record
 TN:
