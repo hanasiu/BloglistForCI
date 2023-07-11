@@ -1,2 +1,8 @@
 .env
 /node_modules
+tests/blog_api.test.js
+tests/dummy.test.js
+tests/favorite.test.js
+tests/most_blogs.test.js
+tests/most_likes.test.js
+tests/total_likes.test.js
