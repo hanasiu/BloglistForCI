@@ -545,7 +545,6 @@
 //     const currentBlogsInDb = await helper.blogsInDb()
 //     const blogToDelete = currentBlogsInDb[0]
 
-
 //     await api
 //       .delete(`/api/blogs/${blogToDelete.id}`)
 //       .expect(204)
